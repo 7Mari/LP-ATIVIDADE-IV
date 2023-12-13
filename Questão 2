@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
+
+#define tam 2
+
+struct dados_alunos
+    {
+        char nome[200];
+        char data[10];
+        float nota[3];
+        float media;
+    };
+struct dados_alunos aluno[tam];
+
+float calcularMedia(struct dados_alunos *aluno){
+    float soma = 0;
+    float media;
+    int i ,j;
+
+  for ( i = 0; i < tam; i++)
+    {
+        printf("Digite o nome do %dº aluno: \n" ,i + 1);
+        gets(aluno[i].nome);
+        for ( j = 0; j < 3; j++)
+        {
+            printf("Digite a %dº nota: \n" ,j+1);
+            scanf("%f" ,&aluno[i].nota[j]);
+             soma+=aluno[i].nota[j];
+        }
+      fflush(stdin);
+        system("cls || clear");
+    }
+    
+    
+    aluno[i].media = soma/(float)tam;
+    soma = 0;
+    if (aluno[i].media >= 7)
+    {
+        printf("Aprovado! ^-^\n");
+    } else 
+    {
+        printf("Reprovado! T-T\n");
+    }
+    
+     return aluno[i].media; 
+  }  
+
+
+int main(){
+    setlocale(LC_ALL ,"portuguese");
+    int i, j;
+    
+    
+for ( i = 0; i < tam; i++)
+{
+    printf("Nome do %dº Aluno: %s\n" , i + 1 ,aluno[i].nome);
+    printf("Média: %.1f\n" , calcularMedia(aluno));
+    
+    
+    printf(".....................................\n\n");
+}
+    
+    return 0;
+}
