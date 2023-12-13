@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
+
+#define tam 3
+
+struct dados_contatos
+{
+    char nome[200];
+    char telefone[14];
+    char email[200];
+};
+    
+    void buscarContato(struct dados_contatos *contatos,char contato[]){
+    	int i;
+    	for(i = 0; i < tam; i++){
+    		if (strcmp(contatos[i].nome, contato) == 0){
+    			printf("Nome: %s \n" ,contatos[i].nome);
+    			printf("Telefone: %s \n" ,contatos[i].telefone);
+    			return;
+			}
+		}
+		printf("Contato não encontrado!\n");
+	}
+	
+	int main(){
+    setlocale(LC_ALL ,"portuguese");
+    
+    struct dados_contatos contatos[tam];
+    char contato[200];
+    int i;
+
+    printf("\nCadastre 3 contatos: \n");
+    //solicitanto dados 
+    for ( i = 0; i < tam; i++)
+    {
+        printf("Nome: \n");
+        gets(contatos[i].nome);
+
+        printf("Número de Telefone: \n");
+        gets(contatos[i].telefone);
+
+        printf("E-mail: \n");
+        gets(contatos[i].email);
+    system("cls || clear");
+    }
+    
+    printf("Digite o nome do contato que está procurando: \n");
+    gets(contato);
+    
+    printf("\n");
+    
+    buscarContato(contatos ,contato);
+
+	
+    
+    return 0;
+}
