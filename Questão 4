@@ -3,7 +3,6 @@
 #include <locale.h>
 #include <string.h>
 
-#define tam 5
 struct Conta_Bancaria
     {
         char numeroConta[200];
