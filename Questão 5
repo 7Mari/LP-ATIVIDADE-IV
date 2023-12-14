@@ -1,0 +1,96 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <string.h>
+
+#define tam 3
+struct dados_funcionarios
+    {
+        char nome[200];
+        char cargo[200];
+        float salario;
+    };
+
+float mediaSalario(struct dados_funcionarios *funcionario){
+  float media, somaSalario = 0;
+  int i;
+
+  for(i = 0; i < tam; i++){
+    somaSalario = somaSalario + funcionario[i].salario;
+  }
+  media = (float) somaSalario/tam;
+
+  return media;
+}
+
+float mediaSalarioProgramador(struct dados_funcionarios *funcionario){
+	
+    float mediaSalarioProgramadores ,somaSalarioProgramadores = 0;
+    int contarProgramadores;
+    int i;
+
+    if (funcionario[i].cargo == "programador")
+        {
+            contarProgramadores++;   
+			for ( i = 0; i < contarProgramadores; i++)
+            {
+                somaSalarioProgramadores = somaSalarioProgramadores + funcionario[i].salario;
+            }  
+        }
+        
+       mediaSalarioProgramadores = (float) somaSalarioProgramadores / contarProgramadores;
+       
+       return mediaSalarioProgramadores;
+}
+
+int main(){
+    setlocale(LC_ALL, "portuguese");
+
+    struct dados_funcionarios funcionario[tam];
+    int i;
+    int contarProgramadores;
+    float somaSalarioProgramadores = 0;
+    float resultado;
+    float resultadoProgramador;
+    float mediaSalarioProgramadores;
+
+    for ( i = 0; i < tam; i++)
+    {
+        printf("Informe seu nome: \n");
+        gets(funcionario[i].nome);
+        
+		printf("Informe seu cargo na empresa: \n");
+        gets(funcionario[i].cargo);
+        
+        printf("Informe o seu salário: \n" );
+        scanf("%f" ,&funcionario[i].salario);
+        
+        fflush(stdin);
+        system("cls || clear");
+   
+        
+    }
+
+//exibição
+
+    for ( i = 0; i < tam; i++)
+    {
+        printf("Nome do %dº Funcionário: %s \n" ,i + 1, funcionario[i].nome);
+        printf("\nCargo: %s\n" ,funcionario[i].cargo);
+        printf("\nSalário: R$%.3f\n" ,funcionario[i].salario);
+        printf("..............................................\n");
+    }
+    resultado = mediaSalario(funcionario);
+    
+    printf("Média Geral dos Salários: R$%.3f\n", resultado);
+
+    resultadoProgramador = mediaSalarioProgramador(funcionario);
+            
+    printf("Média dos Salários dos Programadores: R$%.3f\n", resultadoProgramador);
+    
+
+    return 0;
+}
+
+
+
