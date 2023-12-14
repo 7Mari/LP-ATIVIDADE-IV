@@ -2,77 +2,118 @@
 #include <stdlib.h>
 #include <locale.h>
 #include <string.h>
+#include <time.h>
 
-struct Produto
+struct produto_info
 {
     char nome[200];
     float preco;
-    int estoque;
+    int qntdEstoque;
 };
 
+void escolherProduto(struct produto_info produtos){
+    int codigo2;
+    int qntdDeProdutos;
+    float soma = 0;
 
-int main(){
-    setlocale(LC_ALL ,"portuguese");
-
-    struct Produto produtos;
-    int codigo;
-    int contador;
-    float valorTotal;
+    qntdDeProdutos++;
+    fflush(stdin);
+    printf("(1)*-Bolo Azul-* |R$15,90\n");
+    printf("(2)*-Bolo Rosa-* |R$25,80\n");
+    printf("(3)*-Bolo Vermelho-* |R$22,50\n");
+    printf("______________________________________________\n");
     
-    do
-    {
-        printf("\n[1]Realizar uma compra\n");
-        printf("[2]Consultar estoque\n");
-        printf("[3]Sair do programa\n");
-        printf("---------------------------------\n");
-        printf("Escolhas uma das opções acima: \n");
-        scanf("%d" ,&codigo);
-  
-    switch (codigo)
+    printf("Digite o produto de sua preferência: \n");
+    scanf("%d" ,&codigo2);
+    switch (codigo2)
     {
     case 1:
-        printf("Digite o produto de sua preferência: \n");
-        gets(produtos.nome);
-            switch (produtos.nome)
-            {
-            case 'A':
-                /* code */
-                break;
-            
-            default:
-                break;
-            }
-    
-    
-        contador++;
+        produtos.preco = 15,90;
         break;
     
     case 2:
-        produtos.estoque = 20;
-        printf("\n[A]Tomate: %d | Valor: R$3\n" ,produtos.estoque);
-        printf("\n[B]Cebola: %d | Valor: R$3\n" ,produtos.estoque);
-        printf("\n[C]Batata: %d | Valor: R$3\n" ,produtos.estoque);
-
-        if (codigo == 1)
-    {
-        produtos.estoque = -1;
-    }
-
+        produtos.preco = 25,80;
         break;
-    case 3:
 
-    produtos.preco = 3;
-    valorTotal = contador * produtos.preco;
-    
-        printf("Valor Total da compra: %.1f\n" ,valorTotal);
+    case 3:
+        produtos.preco = 22,50;
+        
         break;
     default:
-        printf("Opção inválida!");
+    printf("Produto não encontrado! \n");
         break;
     }
-    } while (codigo != 3);
+
+    system("cls || clear");
+}
+
+float valor(struct produto_info produtos){
+    float soma;
+    float valorTotal;
+
+    soma = produtos.preco + produtos.preco;
+        valorTotal = soma;
+        printf("Valor Total da Compra: R$%.2f\n" ,valorTotal);
+        printf("Quantidade de Produtos no Estoque: %d\n" ,produtos.qntdEstoque);
+
+        return valorTotal;
+}
+
+void qntdDoEstoque(struct produto_info produtos){
+    int qntdDeEstoqueFinal;
+    int qntdDeProdutos;
+    int codigo;
+
+    produtos.qntdEstoque = 45;
+    printf("Existe %d itens no estoque..." ,produtos.qntdEstoque);
+        
+        if (codigo == 1)
+        {
+            produtos.qntdEstoque - qntdDeProdutos;
+            
+        }
+    sleep(2);
+    system("cls || clear");
+}
+
+int main(){
+    setlocale(LC_ALL ,"portuguese");
+struct produto_info produtos;
+int i ,codigo ,codigo2,qntdDeProdutos ,qntdDeEstoqueFinal;
+float valorTotal;
+float soma = 0;
+
+do
+{
+    printf("\n*--------------------------------------------*\n");
+    printf("\n[1]Realizar uma compra\n");
+    printf("[2]Consultar estoque\n");
+    printf("[3]Sair do programa\n");
+    printf("*---------------------------------------------*\n");
+    printf("Escolhas uma das opções acima: \n");
+    scanf("%d" ,&codigo);
+    switch (codigo)
+    {
+
+    case 1:
+        escolherProduto(produtos);
     
+        break;
+
+    case 2:
+        qntdDoEstoque(produtos);
+        
+        break;
+
+    case 3:
+        valor(produtos);
+        break;
     
+    default:
+    printf("Opção Inválida! \n");
+        break;
+    }
+} while (codigo != 3);
 
     return 0;
 }
